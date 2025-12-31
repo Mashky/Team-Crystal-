@@ -1,0 +1,92 @@
+<!-- HERO -->
+<div class="hero container">
+  <h1>Team Crystal</h1>
+  <p>Free Fire Elite Squad — Compete, Train & Win!</p>
+  <a href="#apply" class="btn">Apply Now</a>
+  <a href="https://discord.gg/pVQDeUbz9U" target="_blank" class="btn">Join Discord</a>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="container">
+  <h2>About Team Crystal</h2>
+  <p style="text-align:center; max-width:900px; margin:12px auto; color:#ccc;">
+    Team Crystal is a professional Free Fire squad focused on strategy, coordination, and victory. Join our elite team and take your skills to the next level.
+  </p>
+</section>
+
+<!-- FEATURES -->
+<section id="features" class="container">
+  <h2>Why Join Us</h2>
+  <div class="features">
+    <div class="feature-card"><h3>Elite Gameplay</h3><p>Play with highly skilled members and improve your performance.</p></div>
+    <div class="feature-card"><h3>Training Sessions</h3><p>Regular practice sessions to sharpen your skills.</p></div>
+    <div class="feature-card"><h3>Tournaments</h3><p>Compete in tournaments and showcase your talent.</p></div>
+    <div class="feature-card"><h3>Community</h3><p>Be part of an active, friendly Discord community.</p></div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="container">
+  <h2>Our Team</h2>
+  <div class="team-grid">
+    <div class="member"><h3>Leader</h3><p>Player1</p></div>
+    <div class="member"><h3>Sniper</h3><p>Player2</p></div>
+    <div class="member"><h3>Support</h3><p>Player3</p></div>
+    <div class="member"><h3>Rusher</h3><p>Player4</p></div>
+  </div>
+</section>
+
+<!-- APPLY -->
+<section id="apply" class="container">
+  <h2>Apply to Join</h2>
+  <form id="applyForm" class="apply-form">
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="text" id="ign" placeholder="In-Game Name (IGN)" required>
+    <input type="text" id="discord" placeholder="Discord / Social ID" required>
+    <textarea id="reason" placeholder="Why should we choose you?" rows="4" required></textarea>
+    <input type="submit" value="Submit Application">
+  </form>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="container" style="text-align:center;">
+  <h2>Contact</h2>
+  <p>Discord: <a href="YOUR_DISCORD_INVITE_LINK" target="_blank">Join Server</a></p>
+  <p>Email: teamcrystal@example.com</p>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">&copy; 2025 Team Crystal • Clean & Modern Design</div>
+
+<!-- JS -->
+<script>
+// Scroll animations
+const sections = document.querySelectorAll("section");
+window.addEventListener("scroll", () => {
+  const triggerBottom = window.innerHeight / 5 * 4;
+  sections.forEach(section => {
+    if(section.getBoundingClientRect().top < triggerBottom) section.classList.add("visible");
+  });
+});
+
+// Discord webhook form
+const webhookURL = "https://discord.com/api/webhooks/1455848943803171003/QRlL6IevGeWEydcNa6pe2Tm0Xd92IbvZWH1P3o0-rV5qCIATHnw7PaxqRksMVgNMu8lv";
+document.getElementById('applyForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const ign = document.getElementById('ign').value;
+  const discord = document.getElementById('discord').value;
+  const reason = document.getElementById('reason').value;
+  fetch(webhookURL, {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({content:`**New Application**\n**Name:** ${name}\n**IGN:** ${ign}\n**Discord:** ${discord}\n**Reason:** ${reason}`})
+  })
+  .then(res => res.ok ? alert("Application sent!") : alert("Failed!"))
+  .catch(err => { console.error(err); alert("Error!"); });
+  e.target.reset();
+});
+</script>
+
+</body>
+</html>
